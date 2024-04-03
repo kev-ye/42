@@ -1,0 +1,33 @@
+server {
+	listen 80;
+	listen [::]:80;
+	server_name website;
+	# return 301 	-> permanently Moved
+	# return 302 	-> temporarily Moved
+	# $host			-> localhost url
+	# $request_uri 	-> full original request URI
+	return 301 https://$host$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+    ssl_certificate /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key /etc/nginx/ssl/key.pem;
+
+	root /var/www/website;
+
+	index index.php index.html index.htm index.nginx-debian.html;
+
+	server_name website;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+	}
+}

@@ -1,0 +1,56 @@
+.toolbar,
+.toolbar-offline,
+.footer,
+.sidenav,
+p {
+	font-family: 'Press Start 2P', serif;
+	font-size: 15px;
+}
+
+.toolbar {
+	border: solid;
+	border-radius: 7px;
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	z-index: 2;
+}
+
+.toolbar-offline,
+.footer {
+	border: solid;
+	border-radius: 7px;
+	display: flex;
+	justify-content: space-around;
+	position: fixed;
+	z-index: 2;
+}
+
+.footer {
+	bottom: 0;
+}
+
+.sidenav-container {
+	width: 100%;
+	height: 100%;
+}
+
+.router-container {
+	border-style: none solid;
+	margin: 0 64px;
+}
+
+.sidenav {
+	border-style: none solid;
+	margin: 64px 0;
+	width: 350px;
+}
+
+.item {
+	border: solid;
+	border-radius: 50%;
+}
+
+.material-icon {
+	transform: translateY(-20%);
+}

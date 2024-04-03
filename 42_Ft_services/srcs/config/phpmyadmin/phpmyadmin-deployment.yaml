@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: svc_phpmyadmin
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+          name: phpmyadmin-http
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - /APP/srcs/livenessprobe.sh
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  annotations:
+    # metallb.universe.tf/allow-shared-ip: <key> : use the same IP address for each service with the same key
+    metallb.universe.tf/allow-shared-ip: universal-ip
+spec:
+  selector:
+    app: phpmyadmin
+  type: LoadBalancer
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 5000
+    name: phpmyadmin-http

@@ -1,0 +1,5 @@
+Credentials cache: API:EB3EE2FD-691C-4E8F-9B3D-171ABE6C131E
+        Principal: kaye@42.FR
+
+  Issued                Expires               Principal
+Aug  3 14:16:53 2020  Aug 10 14:16:49 2020  krbtgt/42.FR@42.FR

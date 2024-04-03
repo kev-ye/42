@@ -1,0 +1,5 @@
+.vscode/
+.build/
+webserv
+a.out
+*.DS_Store

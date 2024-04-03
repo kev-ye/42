@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kaye <kaye@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/16 19:09:03 by kaye              #+#    #+#              #
+#    Updated: 2021/05/12 20:01:08 by kaye             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM alpine:latest
+
+COPY . /APP
+WORKDIR /APP
+
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+	&& apk update \
+	&& apk add --no-cache php7 openrc wget telegraf nginx \
+	&& apk add --no-cache php7-fpm php7-mbstring php7-common php7-session php7-iconv php7-json \
+	php7-gd php7-curl php7-xml php7-mysqli php7-imap php7-cgi \
+	fcgi php7-pdo php7-pdo_mysql php7-soap php7-xmlrpc php7-posix \
+	php7-mcrypt php7-gettext php7-ldap php7-ctype php7-dom
+
+# install phpmyadmin
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+	&& mkdir -p /var/www/phpmyadmin \
+	&& wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz -P /var/www/phpmyadmin/ \
+	&& tar -xvf /var/www/phpmyadmin/phpMyAdmin-5.0.2-all-languages.tar.gz -C /var/www/phpmyadmin/ \
+	&& mv /var/www/phpmyadmin/phpMyAdmin-5.0.2-all-languages /var/www/phpmyadmin/phpmyadmin \
+	&& rm /var/www/phpmyadmin/phpMyAdmin-5.0.2-all-languages.tar.gz \
+	&& chmod -R 777 /var/www/ \
+	&& mv /APP/srcs/config.inc.php /var/www/phpmyadmin/phpmyadmin/config.inc.php
+
+# add nginx config
+RUN mkdir /run/nginx/
+COPY ./srcs/nginx.conf /etc/nginx/conf.d/default.conf
+
+# telegraf config
+RUN mkdir /etc/telegraf/
+COPY ./srcs/telegraf.conf /etc/telegraf.conf
+
+EXPOSE 5000
+
+CMD ["/bin/sh", "./srcs/init.sh"]

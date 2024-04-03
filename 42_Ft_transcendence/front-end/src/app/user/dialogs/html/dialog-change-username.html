@@ -1,0 +1,12 @@
+
+<div style="max-width: 500px" >
+
+    <h1> Change username </h1>
+    <p> Please enter new username </p>
+    <form (ngSubmit)="changeUsername($event, newUsername.value)">
+
+        <input type="text" placeholder="New username.." autocomplete="false" #newUsername (input)="inputEvent(newUsername.value)">
+        <button type="submit" [disabled]="!change"> Change </button>
+    </form>
+    <div #statusText></div>
+</div>

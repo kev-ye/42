@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<ul>
+    <li>
+        <h2>Frontend</h2>
+
+        <div id="htm5_percentage">
+            <p>HTML5</p>
+        </div>
+        <progress id="htm5" class="html5" max="100"><span class="progress-bar">cnm</span></progress>
+
+        <div id="css3_percentage">
+            <p>CSS3</p>
+        </div>
+        <progress id="css3" class="css3" max="100"></progress>
+
+        <div id="jquery_percentage">
+            <p>JQuery</p>
+        </div>
+        <progress id="jquery" class="jquery" max="100"></progress>
+    </li>
+    <li>
+        <h2>Backend</h2>
+        
+        <div id="python_percentage">
+            <p>Python</p>
+        </div>
+        <progress id="python" class="python" max="100"></progress>
+
+        <div id="php_percentage">
+            <p>PHP</p>
+        </div>
+        <progress id="php" class="php" max="100"></progress>
+
+        <div id="node-js_percentage">
+            <p>Node.js</p>
+        </div>
+        <progress id="node-js" class="node-js" max="100"></progress>
+    </li>
+</ul>
+
+</body>
+    <script>
+        const progressBars = document.querySelectorAll('progress');
+
+        function incrementProgress(progressBar, percentage_div) {
+            let currentValue = parseInt(progressBar.value, 10);
+
+            if (currentValue < 100) {
+                progressBar.value = currentValue + 1;
+                percentage_div.style.width = `${progressBar.value}%`;
+                percentage_div.children[0].setAttribute('data-value', progressBar.value);
+            }
+        }
+
+        progressBars.forEach(function(progressBar) {
+            progressBar.value = 0;
+            const percentage_div = document.getElementById(progressBar.id + '_percentage');
+            const random_timeout = Math.floor(Math.random() * 5) * 1000;
+            
+            percentage_div.style.width = `${progressBar.value}%`;
+            percentage_div.children[0].setAttribute('data-value', progressBar.value);
+            setTimeout(() => setInterval(() => incrementProgress(progressBar, percentage_div), 100), random_timeout)
+        });
+</script>
+</html>

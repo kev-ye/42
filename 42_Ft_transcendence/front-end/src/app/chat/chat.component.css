@@ -1,0 +1,173 @@
+/*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+
+.background-one {
+	background-color: rgb(223, 223, 223);
+	height: 90%;
+	width: 350px;
+	position: fixed;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+
+.inputDiv {
+	position: relative;
+	height: 100%;
+	min-height: 30px;
+}
+
+@media screen and (min-height: 585px) {
+	/* .inputDiv {
+		position: relative;
+		height: 100%;
+		min-height: 30px;
+	} */
+	.responsive {
+		height: 60%;
+	}
+
+}
+
+@media screen and (max-height: 585px) {
+	/* .inputDiv {
+		position: fixed;
+		height: 30px;
+		bottom: 70px;
+	}	 */
+
+	.responsive {
+		height: 40%;
+	}
+}
+
+@media screen and (max-height: 430px) {
+	/* .inputDiv {
+		position: fixed;
+		height: 30px;
+		bottom: 70px;
+	}	 */
+
+	.responsive {
+		height: 20%;
+	}
+}
+
+.inviteGame {
+	background-color: rgb(255, 155, 155);
+	text-align: center;
+	text-decoration: underline solid black;
+	cursor: pointer;
+	transition: 100ms ease;
+	margin-top: 5px;
+}
+
+.inviteGame:hover {
+	background-color: brown;
+	color: white;
+}
+
+.contact:hover {
+	background-color: hotpink;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.tab {
+	position: relative;
+	width: 1px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.tab:hover {
+	background-color: hotpink;
+}
+
+.mat-tab-body-wrapper {
+	background-color: royalblue;
+	bottom: 12px;
+}
+
+.friend {
+	background: linear-gradient(90deg, var(--color), rgb(223, 223, 223) 90%);
+	height: 15px;
+	padding-top: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	vertical-align: middle;
+	cursor: default;
+	font-weight: bold;
+	position: relative;
+}
+
+.friend:hover {
+	background: linear-gradient(90deg, rgb(129, 63, 2), rgb(223, 223, 223) 90%);
+}
+
+.messages {
+	cursor: default;
+	word-break: break-all;
+	user-select: none;
+	margin-top: 5px;
+
+}
+
+.messages.mine {
+	text-align: right;
+	margin-right: 10px;
+}
+
+.messages.yours {
+	text-align: left;
+	margin-left: 10px;
+}
+
+.colorLabel:before {
+	position: absolute;
+	content: "";
+	background-color: var(--color);
+	width: 5px;
+	height: 100%;
+	margin-right: 5px;
+	margin-left: 2px;
+}
+
+.messages:hover {
+	background-color: rgb(143, 143, 143);
+}
+
+.channel:hover {
+	background-color: rgb(165, 164, 164);
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.btn {
+	position: absolute;
+	cursor: pointer;
+	border-radius: 50%;
+}
+
+.btn:hover {
+	background-color: rgb(206, 206, 206);
+}
+
+.addFriend {
+	text-decoration: underline; text-align: center; font-weight: bold;
+	position: absolute;
+	display: inline;
+	left: 50%;
+	transform: translate(-50%, 0);
+	cursor: pointer;
+}
+
+.addFriend:hover {
+	color: blue;
+}

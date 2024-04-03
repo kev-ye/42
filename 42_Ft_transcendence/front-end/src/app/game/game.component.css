@@ -1,0 +1,108 @@
+.game-container {
+	margin: 64px 0;
+}
+
+#game-wrapper {
+	display: block;
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.game,
+.ball,
+.player,
+.power {
+	transition: fill 0.3s ease;
+	-o-transition: fill 0.3s ease;
+	-moz-transition: fill 0.3s ease;
+	-webkit-transition: fill 0.3s ease;
+}
+
+.game {
+	aspect-ratio: 5/3;
+	margin: 0 5%;
+	box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.15);
+	border-radius: 30px;
+}
+
+.game .delimiter {
+	stroke: rgba(255, 255, 255, 0.4);
+	stroke-width: 3px;
+}
+
+.score-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.score {
+	color: white;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 26px;
+	letter-spacing: 2px;
+	font-weight: lighter;
+	font-style: normal;
+	border: 4px solid rgba(0, 0, 0, .18);
+	border-radius: 50%;
+	padding: 20px;
+	background-color: red;
+	margin: 50px 20px 20px 20px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, .18);
+}
+
+.score-winner {
+	background-color: green;
+}
+
+.score-loser {
+	background-color: red;
+}
+
+#game-preferences {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 40px auto;
+}
+
+#game-preferences .preferences {
+	padding: 0 20px;
+}
+
+.btn {
+	color: black;
+	font-family:'Courier New', Courier, monospace;
+	font-size: 14px;
+	font-weight: 800;
+	padding: 15px 25px;
+	border: 3px solid transparent;
+	border-radius: 5px;
+	background-color: rgb(180, 210, 236);
+	box-shadow: 0px 2px 18px rgba(0, 0, 0, .13);
+	transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+	cursor: pointer;
+	color: white;
+	background-color: rgb(50, 50, 50);
+	border: 3px solid grey;
+}
+
+.btn:active {
+	color: grey;
+}
+
+.btn-dark {
+	color: white;
+	background-color: red;
+	border: 3px solid black;
+}
+
+.btn-dark:hover {
+	color: rgb(230, 230, 230);
+	background-color: red;
+	border: 3px solid grey;
+}

@@ -1,0 +1,43 @@
+<button mat-stroked-button class="btn-back" (click)="getToGameRoom()">
+	<mat-icon>keyboard_arrow_left</mat-icon>
+	Game Room
+</button>
+<br>
+
+<div class="container">
+
+	<h2>Spectate room</h2>
+
+	<div class="search_game">
+		<mat-form-field class="example-full-width" appearance="fill">
+			<mat-label>Game ID to spectate</mat-label>
+			<input matInput type="text" #gameID>
+		</mat-form-field>
+
+		<br>
+		<button mat-stroked-button (click)="spectateGame(gameID.value)">Spectate Game</button>
+	</div>
+
+
+	<h2 *ngIf="this.games.length === 0" class="no-game">No games ongoing !</h2>
+
+	<div *ngIf="this.games.length > 0" class="game-list">
+		<h2>Ongoing Games</h2>
+		<mat-list>
+			<mat-list-item class="game-list-item" *ngFor="let game of games">
+
+				<div>
+					<button mat-raised-button (click)="spectateGame(game.id)">Watch</button>
+				</div>
+
+				<div *ngIf="game.first_user_obj && game.second_user_obj">
+					{{ game.first_user_obj.name }}
+					<mat-icon style="color: orange;">flash_on</mat-icon>
+					{{ game.second_user_obj.name }}
+				</div>
+
+			</mat-list-item>
+		</mat-list>
+	</div>
+
+</div>

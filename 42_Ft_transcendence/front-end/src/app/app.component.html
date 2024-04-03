@@ -1,0 +1,44 @@
+<!-- tool bar -->
+<mat-toolbar [ngClass]="isLogin ? 'toolbar' : 'toolbar-offline'">
+	<div *ngIf="isLogin">
+		<button mat-raised-button mat-icon-button (click)="userSidenav.toggle(); openUser(userSidenav)" class="item">
+			<mat-icon class="material-icon">{{ userSidenav.opened ? 'close' : 'person' }}</mat-icon>
+		</button>
+	</div>
+
+	<span>{{ title }}</span>
+
+	<div *ngIf="isLogin">
+		<button mat-raised-button mat-icon-button (click)="friendSidenav.toggle(); openChat(friendSidenav)" class="item">
+			<mat-icon class="material-icon">{{ friendSidenav.opened ? 'close' : 'people' }}</mat-icon>
+		</button>
+		<button mat-raised-button mat-icon-button (click)="roomActive()" class="item">
+			<mat-icon class="material-icon">{{ inRoom ? 'door_back' : 'sports_esports' }}</mat-icon>
+		</button>
+	</div>
+</mat-toolbar>
+
+<!-- side nav -->
+<mat-sidenav-container class="sidenav-container">
+	<!-- user	-->
+	<mat-sidenav #userSidenav mode="over" position="start" class="sidenav">
+		<app-user #userTab (closeEmitter)="receiveClose($event, userSidenav, friendSidenav)" *ngIf="isLogin"></app-user>
+	</mat-sidenav>
+
+	<!-- chat	-->
+	<mat-sidenav #friendSidenav mode="over" position="end" class="sidenav" style="background-color: rgb(165, 164, 164);">
+		<mat-sidenav-content>
+			<app-chat #chatTab style="position: absolute; top: 0%;" (join)="joinGame($event)" *ngIf="isLogin"></app-chat>
+
+		</mat-sidenav-content>
+	</mat-sidenav>
+
+	<!-- router content	-->
+	<mat-sidenav-content class="router-container">
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-toolbar class="footer">
+	<p>Kaye - Besellem - Ppoinsin</p>
+</mat-toolbar>

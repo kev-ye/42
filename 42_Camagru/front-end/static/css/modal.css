@@ -1,0 +1,207 @@
+/* Modal global set */
+
+.mod {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mod-content,
+.mod-content-image {
+  background: #fefefe;
+  margin: 5% auto 15% auto;
+  padding: 20px;
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+}
+
+.mod-close-container {
+  position: relative;
+}
+
+.mod-title-container {
+  text-align: center;
+}
+
+hr.mod-separator {
+  margin: 10px 3%;
+  border: 1px solid #000;
+}
+
+.mod-common-close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.mod-common-close:hover,
+.mod-common-close:focus {
+  color:  red;
+  cursor: pointer;
+}
+
+input[type=text].mod-common-input,
+input[type=password].mod-common-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.mod-common-main-container {
+  margin: 10px;
+  padding: 16px;
+}
+
+@media only screen and (max-width: 640px) {
+  .mod-content {
+    padding: 0px;
+    width: 75%;
+  }
+}
+
+/* modal common btn */
+
+.mod-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mod-acceptbtn,
+.mod-cancelbtn {
+  padding: 14px 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  width: 45%;
+}
+
+.mod-cancelbtn {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+}
+
+/* signIn modal set */
+
+span.mod-signIn-psw {
+  float: right;
+}
+
+@media screen and (max-width: 470px) {
+  span.mod-signIn-psw {
+    display: block;
+    float: none;
+  }
+
+  .mod-signIn-cancelbtn {
+    width: 100%;
+  }
+}
+
+/* Image modal */
+
+.mod-content-image {
+  width: 90%;
+}
+
+.mod-image-social-content {
+  height: 680px;
+  display: flex;
+  flex-direction: row;
+}
+
+.mod-image-container,
+.mod-image-comment-container {
+  margin: 30px 20px;
+  float: left;
+}
+
+.mod-image-content {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.mod-image-comment-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  bottom: 0;
+  overflow: auto;
+}
+
+.mod-image-comment-container button {
+  transform: translateY(-50%);
+  width: 20%;
+  padding: 10px;
+}
+
+.mod-image-comment-container input {
+  float: left;
+  width: 70%;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+  transform: translateY(-50%);
+}
+
+.mod-image-comment-container ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.mod-image-comment-container ul li {
+  text-align: left;
+}
+
+@media only screen and (max-width: 640px) {
+  .mod-image-info-container .mod-common-close {
+    transform: translate(75%, -45%);
+  }
+
+  .mod-content-image {
+    width: 75%;
+  }
+
+  .mod-title-container {
+    font-size: 5px;
+  }
+
+  .mod-image-social-content {
+    /* height: 680px; */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mod-image-comment-input-container {
+    transform: translatey(50%);
+  }
+
+  .mod-image-comment-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+}

@@ -1,0 +1,220 @@
+.cam-container {
+  width: 100%;
+  text-align: center;
+}
+
+.cam-content {
+  width: 100%;
+  position: relative;
+}
+
+.cam-open {
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.50);
+  margin-bottom: 30px;
+}
+
+.cam-image-collect-container {
+  text-align: left;
+  margin: auto;
+  height: 180px;
+  width: 80%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.50);
+  border-radius: 10px;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+
+.cam-image-collect-thumbnail-container {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: relative;
+  height: 160px;
+  margin: 0 5px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.cam-image-collect-thumbnail-container:hover .cam-image-delete {
+  display: block;
+}
+
+.cam-image-collect-thumbnail {
+  top: 50%;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.cam-image-delete {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  color: white;
+  background-color: red;
+  border: 2px solid red;
+  border-radius: 50%;
+  display: none;
+}
+
+.cam-image-delete:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.cam-snap-btn,
+.cam-publish-btn,
+.cam-cancel-btn {
+  border-radius: 50%;
+  opacity: 0.75;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+}
+
+.cam-snap-btn-off:hover {
+  cursor: not-allowed;
+}
+
+.cam-publish-btn {
+  left: 45%;
+}
+
+.cam-cancel-btn {
+  left: 55%;
+}
+
+@media only screen and (max-width: 640px) {
+  .cam-snap-btn,
+  .cam-publish-btn,
+  .cam-cancel-btn {
+    opacity: 0.5;
+    left: 45%;
+    bottom: 20%;
+  }
+
+  .cam-publish-btn {
+    left: 40%;
+  }
+
+  .cam-cancel-btn {
+    left: 55%;
+  }
+
+  .cam-image-delete {
+    display: block;
+  }
+}
+
+.cam-filter-container {
+  list-style: none;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 10%;
+  height: 10%;
+}
+
+.cam-filter-sepia,
+.cam-filter-grayscale,
+.cam-filter-brightness,
+.cam-filter-contrast {
+  opacity: 0.75;
+  width: 75%;
+  border-radius: 50%;
+  background-color: grey;
+}
+
+.cam-filter-sepia {
+  filter: sepia(100%);
+}
+
+.cam-filter-grayscale {
+  filter: grayscale(100%);
+}
+.cam-filter-brightness {
+  filter: brightness(0.35);
+}
+.cam-filter-contrast {
+  filter: contrast(140%);
+}
+
+@media only screen and (max-width: 640px) {
+  .cam-filter-sepia,
+  .cam-filter-grayscale,
+  .cam-filter-brightness,
+  .cam-filter-contrast {
+    width: 95%;
+  }
+}
+
+.cam-image-upload-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  margin-top: 40px;
+}
+
+.cam-image-upload-container button {
+  width: 20%;
+}
+
+.cam-image-upload-container input {
+  width: 30%;
+}
+
+.cam-image-upload-container input::-webkit-file-upload-button {
+  display: none;
+}
+
+.cam-image-upload-container input::before {
+  width: 50%;
+  content: "File";
+  background-color: black; /* Green */
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.cam-image-upload-container input::before {
+  background-color: white; 
+  color: black; 
+  border: 2px solid black;
+}
+
+.cam-image-upload-container input:hover::before {
+  background-color: black;
+  color: white;
+}
+
+@media only screen and (max-width: 640px) {
+  .cam-image-upload-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cam-image-upload-container input {
+    margin: 10px 20px;
+    width: 80%;
+  }
+
+  .cam-image-upload-container input:hover::before {
+    background-color: white;
+    color: black;
+    }
+
+  .cam-image-upload-container button {
+    margin: 0px 20px;
+    width: 80%;
+    padding: 20px;
+  }
+}

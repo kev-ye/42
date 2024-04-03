@@ -1,0 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kaye <kaye@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/28 21:33:25 by kaye              #+#    #+#              #
+#    Updated: 2021/05/12 14:31:36 by kaye             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM alpine:latest
+
+COPY . /APP
+WORKDIR /APP
+
+# VOLUME /sys/fs/cgroup
+
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+	&& apk update \
+	&& apk add --no-cache grafana \
+	&& apk add --no-cache openrc wget telegraf vim
+
+# grafana config
+RUN mv ./srcs/datasources.yaml /usr/share/grafana/conf/provisioning/datasources \
+	&& mv ./srcs/dashboard.yaml /usr/share/grafana/conf/provisioning/dashboards \
+	&& mv ./srcs/dashboards/ftps.json \
+	./srcs/dashboards/grafana.json \
+	./srcs/dashboards/influxdb.json \
+	./srcs/dashboards/mysql.json \
+	./srcs/dashboards/nginx.json \
+	./srcs/dashboards/phpmyadmin.json \
+	./srcs/dashboards/wordpress.json /usr/share/grafana/conf/provisioning/dashboards
+
+# telegraf config
+RUN mkdir /etc/telegraf/
+COPY ./srcs/telegraf.conf /etc/telegraf.conf
+
+EXPOSE 3000
+
+CMD ["/bin/sh", "./srcs/init.sh"]

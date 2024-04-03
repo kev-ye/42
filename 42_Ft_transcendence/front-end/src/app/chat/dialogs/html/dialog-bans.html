@@ -1,0 +1,6 @@
+<h1> List of bans</h1>
+<div style="height: 500px; width: 300px ;overflow-x: hidden; overflow-y: scroll;">
+	<div *ngFor="let ban of bans"> {{ ban.name }}
+		<button *ngIf="data.chat.creator_id != ban.user_id" (click)="unbanUser(ban)"> Unban </button>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+<button mat-stroked-button class="btn-back" (click)="getToGameRoom()">
+	<mat-icon>keyboard_arrow_left</mat-icon>
+	Game Room
+</button>
+<br>
+
+<div class="container">
+
+	<div class="game_option">
+
+		<h2>Match Making</h2>
+
+		<div>
+			<button mat-raised-button color="primary" (click)="startMatchmaking()">Find a game NOW !</button>
+		</div>
+
+		<mat-divider class="divider"></mat-divider>
+
+		<div>
+			<mat-form-field class="example-full-width" appearance="fill">
+				<mat-label>Game ID</mat-label>
+				<input matInput type="text" #gameID>
+			</mat-form-field>
+
+			<br>
+			<button mat-stroked-button (click)="joinGame(gameID.value)"> Join Game </button>
+		</div>
+	</div>
+
+	<div class="game_option">
+
+		<h2>Custom Game</h2>
+
+		<div class="form">
+			<mat-checkbox #checkbox>Power ups</mat-checkbox>
+
+			<br>
+
+			<mat-form-field appearance="fill" class="form-wrapper">
+				<mat-hint>Choose points to score</mat-hint>
+				<mat-label>Points</mat-label>
+				<select matNativeControl #select>
+					<option value="3">3</option>
+					<option value="5">5</option>
+					<option value="10" selected>10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+				</select>
+			</mat-form-field>
+		</div>
+
+		<br>
+		<button mat-raised-button color="primary" (click)="matchMaking(select.value, checkbox.checked)">Start</button>
+	</div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-vertical-stepper [linear]="true" class="stepper-container">
+    <form [formGroup]="subscriptionForm">
+
+      <!-- name step -->
+      <mat-step [stepControl]="subscriptionForm" label="Info">
+        <mat-form-field hintLabel="16 caracters max">
+          <input name="name" matInput formControlName="name" maxlength="16" required>
+          <mat-placeholder>
+            <mat-icon>person</mat-icon>name
+          </mat-placeholder>
+          <mat-hint align="end">{{ subscriptionForm.get('name')?.value?.length || 0 }} / 16</mat-hint>
+          <mat-error *ngIf="subscriptionForm.get('name')?.hasError('required')">name shouldn't empty</mat-error>
+          <mat-error *ngIf="subscriptionForm.get('name')?.hasError('pattern')">only letters</mat-error>
+          <mat-error *ngIf="subscriptionForm.get('name')?.hasError('minlength')">min 6 caracters.</mat-error>
+        </mat-form-field>
+				  <button mat-button color="warm" (click)="nameVerify()">check name</button>
+        <div>
+          <button mat-button matStepperNext color="primary">Next</button>
+        </div>
+      </mat-step>
+
+    </form>
+
+    <!-- submit step -->
+    <mat-step label="Done">
+      <button mat-button matStepperPrevious color="warn">Back</button>
+			<button mat-raised-button color="warn" (click)="cancel()" class="btn">Cancel</button>
+      <button type="submit" mat-raised-button color="primary" (click)="createUser()" class="btn">Done</button>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</div>

@@ -1,0 +1,102 @@
+.main {
+	margin-top: 128px;
+	font-family: 'Press Start 2P', serif;
+}
+
+.main h1 {
+	font-size: 25px;
+	margin-top: 180px;
+	text-align: center;
+}
+
+.hero {
+	position: relative;
+	background-image: url('./assets/cats.gif');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 65%;
+	aspect-ratio: 3/2;
+	width: 80%;
+	margin: 0 auto;
+	z-index: -1;
+}
+
+.history {
+	position: relative;
+	margin: 80px 0 250px 0;
+}
+
+.history h2 {
+	text-align: center;
+	font-size: 18px;
+	font-family: 'Press Start 2P', serif;
+}
+
+.history .no-game {
+	margin: 0 auto;
+	color: green;
+	font-size: 16px;
+	font-weight: 0;
+	margin-top: 100px;
+	padding: 25px 50px;
+	border: 3px solid black;
+	border-radius: 10px;
+	width: fit-content;
+}
+
+.history .game-list {
+	display: flex;
+	flex-direction: column;
+	margin: 50px auto 0 auto;
+}
+
+.history .game-list .game-list-item {
+	width: fit-content;
+	height: fit-content;
+	margin: 10px auto;
+}
+
+.node {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	background-color: rgb(255,220,220);
+	border: 2px solid rgb(210,210,210);
+	border-radius: 10px;
+	padding: 20px 50px;
+}
+
+.node.node-winner {
+	background-color: rgb(230,240,230);
+}
+
+.node span {
+	display: inline-flex;
+	justify-content: center;
+}
+
+.node span p {
+	margin: 0 40px;
+}
+
+.node .node-txt {
+	color: rgb(50,50,50);
+	font-family: 'Press Start 2P', serif;
+	font-size: 12px;
+	font-weight: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+	.main h1 {
+		font-size: 17px;
+	}
+
+	.hero {
+		width: 80%;
+	}
+	
+	.history h2 {
+		font-size: 12px;
+	}
+}

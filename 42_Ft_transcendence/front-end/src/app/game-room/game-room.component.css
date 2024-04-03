@@ -1,0 +1,65 @@
+.game-room-wrapper {
+	display: flex;
+	flex-direction: row;
+	margin-top: 64px;
+	justify-content: center;
+}
+
+.game-room-option {
+	display: table;
+	background-color: red;
+	flex: 1 50%;
+	height: 90vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	transition: .2s ease;
+}
+
+.game-match-making {
+	background-image: url("./assets/ping-pong.gif");
+}
+
+.game-spectator {
+	background-image: url("./assets/tennis.gif");
+}
+
+.game-room-title {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.game-room-title h2 {
+	color: white;
+	font-size: 22px;
+	letter-spacing: 1.2px;
+	font-weight: 500;
+	text-transform: uppercase;
+	width: fit-content;
+	height: fit-content;
+	padding: 20px 30px;
+	margin: 0 auto;
+	background-color: rgba(0,0,0, .8);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+	transition: .2s ease;
+	-webkit-transition: .2s ease;
+	-moz-transition: .2s ease;
+	-ms-transition: .2s ease;
+	-o-transition: .2s ease;
+}
+
+.game-room-option:hover {
+	cursor: pointer;
+	flex: 1 80%;
+}
+
+.game-room-option:hover .game-room-title h2 {
+	padding: 40px 60px;
+}
+
+@media screen and (max-width: 768px) {
+	.game-room-wrapper {
+		flex-direction: column;
+	}
+}

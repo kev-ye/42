@@ -1,0 +1,9 @@
+<div>
+    <div style="text-align: center;"> Enter username </div>
+    <form (ngSubmit)="submitFriend(input.value)">
+
+        <input type="text" #input (input)="inputEvent(input.value)">
+        <button type="submit" [disabled]="!text"> Add as friend </button>
+    </form>
+    <div #error></div>
+</div>

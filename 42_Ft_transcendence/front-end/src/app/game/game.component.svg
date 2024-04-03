@@ -1,0 +1,75 @@
+<div class="game-container">
+
+	<!-- Scores -->
+	<div class="score-wrapper">
+		<p class="score"
+			[ngClass]="player1.score >= player2.score ? 'score-winner' : 'score-loser'">
+			{{ player1.score | number:"2.0-0" }}
+		</p>
+		<p class="score"
+			[ngClass]="player1.score <= player2.score ? 'score-winner' : 'score-loser'">
+			{{ player2.score | number:"2.0-0" }}
+		</p>
+	</div>
+	
+	<div *ngIf="first_name && second_name;" style="height: 30px; font-family: 'Press Start 2P';">
+		<div style="position: absolute; left: 20%; font-family: 'Press Start 2P';"> {{first_name}} </div>
+		<div style="position: absolute; right: 20%; font-family: 'Press Start 2P';">{{second_name}}</div>
+	</div>
+
+
+	<div id="game-wrapper">
+		<svg class="game" [attr.fill]="gameColor">
+		
+			<rect width="100%" height="100%"/>
+				
+			<line class="delimiter"
+				x1="50%"
+				y1="0px"
+				x2="50%"
+				y2="100%"/>
+			
+			<circle class="ball"
+				[attr.fill]="movablesColor"
+				[attr.cx]="ball.x + '%'"
+				[attr.cy]="ball.y + '%'"
+				[attr.r]="ball_t.RADIUS + '%'"/>
+
+			<circle *ngIf="power" class="power"
+				[attr.fill]="power.type == 2 ? 'red' : 'blue'"
+				[attr.cx]="power.pos.x + '%'"
+				[attr.cy]="power.pos.y + '%'"
+				[attr.r]="ball_t.RADIUS * 5 + '%'"/>
+
+			<rect class="player"
+				[attr.fill]="movablesColor"
+				[attr.width]="paddle.WIDTH + '%'"
+				[attr.height]="paddle.HEIGHT + '%'"
+				[attr.rx]="paddle.RADIUS"
+				[attr.ry]="paddle.RADIUS"
+				[attr.x]="player1.x + '%'"
+				[attr.y]="player1.y + '%'"/>
+
+			<rect class="player"
+				[attr.fill]="movablesColor"
+				[attr.width]="paddle.WIDTH + '%'"
+				[attr.height]="paddle.HEIGHT + '%'"
+				[attr.rx]="paddle.RADIUS"
+				[attr.ry]="paddle.RADIUS"
+				[attr.x]="player2.x + '%'"
+				[attr.y]="player2.y + '%'"/>
+
+		</svg>
+	</div>
+
+
+	<div id="game-preferences">
+		<!-- <div class="preferences">
+			<button  class="btn btn-dark" (click)="start()">Start</button>
+		</div> -->
+		<div class="preferences">
+			<button class="btn" (click)="changeColor()">Change Background Color</button>
+		</div>
+	</div>
+
+</div>

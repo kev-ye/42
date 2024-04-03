@@ -1,0 +1,20 @@
+version: '3.7'
+
+# Services postgresql
+services:
+  postgresql:
+    image: postgres:14
+    container_name: postgresql
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - volume_data:/var/lib/postgresql/data
+
+# Volumes
+volumes:
+  volume_data:

@@ -1,0 +1,14 @@
+<style>
+	.friend {
+		position: relative;
+		background-color: rgb(207, 207, 207);
+		height: 50px;
+	}
+</style>
+
+<h1> Invite friend to channel </h1>
+<form (ngSubmit)="inviteFriend(input.value)">
+	<input type="text" #input placeholder="Enter username.." autocomplete="off">
+	<button> Invite </button>
+</form>
+<div #output></div>

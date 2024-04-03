@@ -1,0 +1,17 @@
+{
+	"/pongApi": {
+		"target": "http://back-end:3000",
+		"secure": false,
+		"changeOrigin": true
+	},
+	"/chatSockIo": {
+		"target": "http://back-end:3001",
+		"secure": false,
+		"changeOrigin": true
+	},
+	"/gameSockIo": {
+		"target": "http://back-end:3002",
+		"secure": false,
+		"changeOrigin": true
+	}
+}

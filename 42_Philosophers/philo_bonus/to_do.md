@@ -1,0 +1,10 @@
+- [x] ./philo_bonus 1 200 200 200           // die -> ~200 ms
+- [x] ./philo_bonus 2 800 200 200           // loop infinite
+- [x] ./philo_bonus 5 800 200 200           // loop infinite
+- [x] ./philo_bonus 5 800 200 200 7         // loop down if every philo ate 7 times
+- [x] ./philo_bonus 4 410 200 200           // loop infinite
+- [x] ./philo_bonus 4 310 200 200           // die
+- [x] ./philo_bonus 4 310 200 100           // die
+- [x] ./philo_bonus 4 500 200 2147483647    // die -> ~500 ms
+- [x] ./philo_bonus 4 2147483647 200 200    // loop infinite
+- [x] ./philo_bonus 4 200 210 200           // die -> <210 ms

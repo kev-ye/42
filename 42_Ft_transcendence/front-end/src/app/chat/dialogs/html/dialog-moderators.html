@@ -1,0 +1,6 @@
+<h1> List of moderators</h1>
+<div style="height: 500px; width: 300px ;overflow-x: hidden; overflow-y: scroll;">
+	<div *ngFor="let mod of moderators"> {{ mod.name }}
+		<button *ngIf="data.chat.creator_id != mod.user_id" (click)="unmodUser(mod)"> Unmod </button>
+	</div>
+</div>

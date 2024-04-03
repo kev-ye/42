@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: svc_wordpress
+        imagePullPolicy: Never
+        env:
+        - name: WP_PASS
+          valueFrom:
+            secretKeyRef:
+              name: password
+              key: wppass
+        ports:
+        - containerPort: 5050
+          name: wordpress-http
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - /APP/srcs/livenessprobe.sh
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  annotations:
+    # metallb.universe.tf/allow-shared-ip: <key> : use the same IP address for each service with the same key
+    metallb.universe.tf/allow-shared-ip: universal-ip
+spec:
+  selector:
+    app: wordpress
+  type: LoadBalancer
+  ports:
+  - port: 5050
+    targetPort: 5050
+    nodePort: 5050
+    name: wordpress-http

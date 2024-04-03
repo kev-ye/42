@@ -1,0 +1,46 @@
+<div class="main">
+
+	<h1>Welcome to PongTastic !</h1>
+	<div class="hero"></div>
+
+</div>
+
+<div class="history">
+	<h2>The Last games you played :</h2>
+
+	<h2 *ngIf="!this.games || this.games.length === 0" class="no-game">No games played !</h2>
+
+	<div *ngIf="this.games && this.games.length > 0" class="game-list">
+		<mat-list>
+			<mat-list-item class="game-list-item" *ngFor="let game of this.games">
+
+				<div class="node" *ngIf="game && game.first_user_obj && game.second_user_obj" [ngClass]="
+					(this.user.id == game.first_user_obj.id && game.first_score >= game.second_score) ||
+					(this.user.id == game.second_user_obj.id && game.first_score <= game.second_score) ?
+					'node-winner' : ''
+					">
+
+					<span>
+						<p class="node-txt">{{ game.first_user_obj.name }}</p>
+						<p class="node-txt">{{ game.second_user_obj.name }}</p>
+					</span>
+
+					<span>
+						<mat-icon style="color: orange;">flash_on</mat-icon>
+					</span>
+
+					<span>
+						<p class="node-txt">
+							{{ game.first_score }}
+						</p>
+						<p class="node-txt">
+							{{ game.second_score }}
+						</p>
+					</span>
+
+				</div>
+			</mat-list-item>
+		</mat-list>
+	</div>
+
+</div>

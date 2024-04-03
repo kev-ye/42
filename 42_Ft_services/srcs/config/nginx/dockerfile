@@ -1,0 +1,70 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kaye <kaye@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/16 19:09:27 by kaye              #+#    #+#              #
+#    Updated: 2021/05/12 19:04:43 by kaye             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM alpine:latest
+
+# creat work folder
+COPY . /APP
+WORKDIR /APP
+
+VOLUME /sys/fs/cgroup
+
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+	&& apk update \
+	&& apk add --no-cache nginx openrc openssl openssh telegraf
+
+# configure ssh
+RUN sed -i "s/#PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && \
+	ssh-keygen -t dsa -P "" -f /etc/ssh/ssh_host_dsa_key && \
+	ssh-keygen -t rsa -P "" -f /etc/ssh/ssh_host_rsa_key && \
+	ssh-keygen -t ecdsa -P "" -f /etc/ssh/ssh_host_ecdsa_key && \
+	ssh-keygen -t ed25519 -P "" -f /etc/ssh/ssh_host_ed25519_key && \
+	echo "root:admin" | chpasswd
+
+# creat www folder
+RUN mkdir /www
+
+# add configure file
+ADD srcs/page/index.html /www
+ADD srcs/page/style.css /www
+ADD srcs/nginx.conf /etc/nginx
+
+# Create www group and www user for running nginx, otherwise it would be too dangerous to use root permissions
+RUN adduser -D -g 'www' www
+
+# Create a directory for storing webpage files, and belong to the www group and www users
+RUN chown -R www:www /var/lib/nginx
+RUN chown -R www:www /www
+
+
+# Create ssl certificate
+RUN mkdir /etc/nginx/ssl
+RUN openssl req \
+        -x509 \
+        -newkey rsa:4096 \
+        -sha256 \
+        -nodes \
+        -keyout /etc/nginx/ssl/key.pem \
+        -out /etc/nginx/ssl/cert.pem \
+        -days 3650 \
+        -subj "/CN=FR/ST=Paris/L=Paris/O=42/OU=42/CN=kaye"
+
+# Create the directory needed for nginx to run
+RUN mkdir /run/nginx/
+
+# telegraf config
+RUN mkdir /etc/telegraf/
+COPY ./srcs/telegraf.conf /etc/telegraf.conf
+
+EXPOSE 80 443 22
+
+CMD ["/bin/sh", "./srcs/init.sh"]

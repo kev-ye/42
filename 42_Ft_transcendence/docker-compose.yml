@@ -1,0 +1,71 @@
+# Production compose
+version: "3.8"
+
+services:
+  # NestJs
+  back-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./back-end
+      target: production
+    restart: always
+    volumes:
+      - back-end-uploads:/pong/uploads
+    command: npm run start:prod
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: ${NODE_ENV_PROD}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+    networks:
+      - front_net
+      - back_net
+      - db_net
+
+  # Angular APP
+  front-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./front-end
+      target: production
+    restart: always
+    command: nginx -g "daemon off;"
+    depends_on:
+      - back-end
+    ports:
+      - "80:80"
+    networks:
+      - front_net
+      - back_net
+
+  # Postgres Database for NestJS to connect to
+  postgres:
+    image: postgres:${IMAGE_V}
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    ports:
+      - "35000:5432"
+    networks:
+      - db_net
+
+volumes:
+  back-end-uploads:
+  psql-data:
+
+networks:
+  front_net:
+    driver: bridge
+  back_net:
+    driver: bridge
+  db_net:
+    driver: bridge

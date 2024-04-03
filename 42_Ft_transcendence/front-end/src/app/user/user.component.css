@@ -1,0 +1,70 @@
+* {
+	font-family: 'Press Start 2P';
+}
+
+.background {
+}
+
+.container {
+	text-align: center;
+}
+
+.avatar {
+	margin-top: 32px;
+	border: 2px solid black;
+	border-radius: 50%;
+	width: 50%;
+	height: 50%;
+	max-height: 300px;
+	max-width: 300px;
+	position: relative;
+}
+
+.category {
+	text-align: center;
+}
+
+.information {
+	text-align: center;
+	color: gray;
+}
+
+.username,
+.qrcode,
+.btn,
+.btnOn {
+	margin: 32px 0;
+}
+
+.username {
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.username:hover {
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+.avatar {
+	transition: .25s ease;
+	cursor: pointer;
+}
+
+.avatar:hover  {
+	opacity: 0.5;
+}
+
+.qrcode {
+	text-align: center;
+}
+
+.btn {
+	text-align: center;
+	color: gray;
+}
+
+.btnOn {
+	text-align: center;
+	color: gray;
+}

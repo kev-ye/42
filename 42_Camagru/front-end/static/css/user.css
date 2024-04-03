@@ -1,0 +1,153 @@
+/* User edit */
+
+.user-edit-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  width: 75%;
+  height: 75%;
+  margin: 10% auto;
+  border: 3px solid black;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .5);
+  overflow: auto;
+}
+
+.user-edit-container ul {
+  list-style-type: none;
+}
+
+.user-edit-content {
+  width: 75%;
+}
+
+.user-edit-content li,
+.user-notify {
+  font-size: 30px;
+  margin: 5% auto;
+}
+
+.user-edit-content input {
+  width: 50%;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+  transform: translateY(-25%);
+}
+
+.user-edit-content .user-edit-username {
+  width: 40%;
+}
+
+.user-edit-btn {
+  padding: 10px;
+  margin: 10px;
+  transform: translateY(-25%);
+}
+
+@media only screen and (max-width: 640px) {
+  .user-edit-content li,
+  .user-notify {
+    font-size: 15px;
+  }
+
+  .user-edit-content input {
+    /* width: 100%; */
+    transform: translateY(-30%);
+  }
+
+  #user-old-password-input,
+  #user-new-password-input {
+    transform: translateY(-10%);
+  }
+
+  .user-edit-btn {
+    padding: 5px;
+    margin: 0px;
+    margin-top: 5px;
+  }
+}
+
+/* switch */
+
+.user-notify-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  transform: translateY(-15%);
+}
+
+.user-notify-switch .user-notify-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.user-notify-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.user-notify-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.user-notify-input:checked + .user-notify-slider {
+  background-color: black;
+}
+
+.user-notify-input:focus + .user-notify-slider {
+  box-shadow: 0 0 1px black;
+}
+
+.user-notify-input:checked + .user-notify-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.user-notify-slider.user-notify-round {
+  border-radius: 34px;
+}
+
+.user-notify-slider.user-notify-round:before {
+  border-radius: 50%;
+}
+
+/* password reset */
+
+#new-password-form input {
+  width: 50%;
+  margin: 20px;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+  transform: translateY(-25%);
+}
+
+#new-password-form button {
+  width: 30%;
+}
+
+#account-confirmation {
+  width: 30%;
+}

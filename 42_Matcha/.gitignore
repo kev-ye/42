@@ -1,0 +1,44 @@
+.idea/
+
+# src
+
+server/.venv/
+server/venv/
+
+server/.flaskenv
+
+server/*.pyc
+server/__pycache__/
+
+server/instance/
+
+server/.pytest_cache/
+server/.coverage
+server/htmlcov/
+
+server/dist/
+server/build/
+server/*.egg-info/
+
+# front-end
+
+front-end/node_modules
+front-end/.pnp
+front-end/.pnp.js
+
+# testing
+front-end/coverage
+
+# production
+front-end/build
+
+# misc
+front-end/.DS_Store
+front-end/.env.local
+front-end/.env.development.local
+front-end/.env.test.local
+front-end/.env.production.local
+
+front-end/npm-debug.log*
+front-end/yarn-debug.log*
+front-end/yarn-error.log*

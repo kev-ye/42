@@ -1,0 +1,109 @@
+<style>
+	.background {
+		width: 400px;
+		position: relative;
+		height: 500px;
+		overflow: hidden;
+	}
+
+	.main {
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+
+	.access {
+		border: solid black 1px;
+	}
+
+	.btn {
+		position: relative;
+		bottom: 0%;
+		left: 50%;
+		transform: translate(-50%, 0);
+		width: 300px;
+	}
+
+	.title {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, 0);
+		text-decoration: underline;
+		font-weight: bold;
+		font-size: 2rem;
+
+
+	}
+
+	.error {
+		background-color: rgb(255, 164, 164);
+		text-align: center;
+		text-decoration: underline;
+		font-weight: bold;
+
+	}
+</style>
+
+<div class="background">
+
+	<div style="position: relative;height: 50px;">
+		<div class="title"> Create chat </div>
+	</div>
+
+	<div class="main">
+		<div style="position: relative; margin-top: 15px; height: 50px; width: 100%;">
+			<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+				<input type="text" name="chatName" #chatName style="left: 50%; text-align: center;">
+				<label for="chatName" style="text-align: center; display: block;"> Name </label>
+			</div>
+		</div>
+		<br>
+		<div class="access">
+
+			<div style="position: relative; width: 100%; height: 15px">
+				<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+					<input (change)="hidePassword(); setAccess(0)" type="radio" name="protected" value="open" checked>
+				</div>
+			</div>
+			<div style="width: 100%; text-align: center;">
+				Open
+			</div>
+
+			<div style="position: relative; width: 100%; height: 15px">
+				<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+					<input (change)="showPassword(); setAccess(1)" type="radio" name="protected" value="protected">
+				</div>
+			</div>
+			<div style="width: 100%; text-align: center;">
+				Protected
+			</div>
+
+			<br>
+			<div style="position: relative; width: 100%;">
+				<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+					<input type="password" placeholder="Type password.." autocomplete="off" #passwordOne
+						[disabled]="!passwordInput" style="text-align: center;">
+				</div>
+				<br>
+				<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+					<input type="password" placeholder="Type again.." autocomplete="off" #passwordTwo
+						[disabled]="!passwordInput" style="text-align: center;">
+				</div>
+			</div>
+
+			<br><br>
+			<div style="position: relative; width: 100%; height: 15px">
+				<div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+					<input (change)="hidePassword(); setAccess(2)" type="radio" name="protected" value="private">
+				</div>
+			</div>
+			<div style="width: 100%; text-align: center;">
+				Private
+			</div>
+		</div>
+		<label for="accessChat" style="display: block; text-align: center;"> Access Mode </label>
+		<br>
+		<button class="btn" (click)="createChat(chatName.value, passwordOne.value, passwordTwo.value)"> Create </button>
+		<div #printError class="error"></div>
+	</div>
+</div>

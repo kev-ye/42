@@ -1,0 +1,21 @@
+<mat-toolbar [ngClass]="'container'">
+  <span>{{ title }}</span>
+</mat-toolbar>
+
+<div class="stepperContainer">
+  <mat-vertical-stepper [linear]="true">
+    <form [formGroup]="twoFactorForm">
+      <mat-step [stepControl]="twoFactorForm" label="Verification">
+        <mat-form-field hintLabel="6 characters max">
+          <input name="token" matInput formControlName="token" maxlength="6" required>
+        </mat-form-field>
+				<mat-hint align="end">{{ twoFactorForm.get('token')?.value?.length || 0 }} / 6</mat-hint>
+				<mat-error *ngIf="twoFactorForm.get('name')?.hasError('pattern')">only numbers</mat-error>
+        <div>
+          <button type="submit" mat-button color="primary" (click)="verify()">Submit</button>
+        </div>
+      </mat-step>
+		</form>
+
+  </mat-vertical-stepper>
+</div>

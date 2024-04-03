@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: svc_nginx
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+          name: nginx-http
+        - containerPort: 443
+          name: nginx-https
+        - containerPort: 22
+          name: nginx-ssh
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - /APP/srcs/livenessprobe.sh
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  annotations:
+    # metallb.universe.tf/allow-shared-ip: <key> : use the same IP address for each service with the same key
+    metallb.universe.tf/allow-shared-ip: universal-ip
+spec:
+  selector:
+    app: nginx
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 80
+    name: nginx-http
+  - port: 443
+    targetPort: 443
+    nodePort: 443
+    name: nginx-https
+  - port: 22
+    targetPort: 22
+    nodePort: 22
+    name: nginx-ssh

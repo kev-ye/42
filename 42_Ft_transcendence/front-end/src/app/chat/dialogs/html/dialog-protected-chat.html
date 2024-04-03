@@ -1,0 +1,16 @@
+<style>
+    .error {
+        text-align: center;
+        background-color: rgb(255, 187, 187);
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
+
+<p> Please enter password for channel </p>
+<form (ngSubmit)="submitPassword(input.value)">
+
+    <input type="password" #input>
+    <button type="submit"> Enter </button>
+</form>
+<div #error class="error"></div>

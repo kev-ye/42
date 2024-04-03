@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kaye <kaye@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/28 19:50:37 by kaye              #+#    #+#              #
+#    Updated: 2021/05/12 14:31:40 by kaye             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM alpine:latest
+
+COPY . /APP
+WORKDIR /APP
+
+# VOLUME /sys/fs/cgroup
+
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+	&& apk update \
+	&& apk add --no-cache openrc openssl vsftpd telegraf
+
+RUN openssl req \
+        -x509 \
+        -newkey rsa:4096 \
+        -sha256 \
+        -nodes \
+        -keyout /etc/vsftpd/key.pem \
+        -out /etc/vsftpd/cert.pem \
+        -days 3650 \
+        -subj "/CN=FR/ST=Paris/L=Paris/O=42/OU=42/CN=kaye"
+
+RUN adduser -D "admin" \
+	&& echo "admin:admin" | chpasswd
+
+RUN mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.duplicate \
+	&& cp ./srcs/vsftpd.conf /etc/vsftpd/
+
+# telegraf config
+RUN mkdir /etc/telegraf/
+COPY ./srcs/telegraf.conf /etc/telegraf.conf
+
+EXPOSE 20 21 20000 20001 20002 20003 20004 20005
+
+CMD ["/bin/sh", "./srcs/init.sh"]

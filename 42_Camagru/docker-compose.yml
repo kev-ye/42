@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  # back
+  back-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./back-end
+      target: product
+    restart: always
+    volumes:
+      - back-end-upload:/camagru/back-end/upload
+    command: node dist/api.js
+    environment:
+      DB_CONN: ${DB_CONN}
+      DB_NAME: ${DB_NAME}
+      DB_USER_COLL_NAME: ${DB_USER_COLL_NAME}
+      DB_FILE_COLL_NAME: ${DB_FILE_COLL_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASS: ${MAIL_PASS}
+      FRONT_URL: ${FRONT_URL}
+      API_URL: ${API_URL}
+    ports:
+      - "3000:3000"
+    networks:
+      - camagru_net
+
+  # front
+  front-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./front-end
+      target: product
+    restart: always
+    command: nginx -g "daemon off;"
+    depends_on:
+      - back_end
+    ports:
+      - "8080:80"
+    networks:
+      - camagru_net
+
+volumes:
+  back-end-upload:
+
+networks:
+  camagru_net:
+     driver: bridge
+

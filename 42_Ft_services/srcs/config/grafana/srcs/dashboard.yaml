@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: dashboard
+    type: file
+    updateIntervalSeconds: 30
+    options:
+      path: /usr/share/grafana/conf/provisioning/dashboards

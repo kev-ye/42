@@ -1,0 +1,39 @@
+<style>
+	.avatar {
+		max-height: 150px;
+		max-width: 150px;
+		border: black 3px solid;
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+</style>
+
+<div *ngIf="!error">
+	<div style="text-align: center;"> {{ username }} </div>
+	<div *ngIf="true">
+		<div style="height: 150px; width: 150px;">
+			<img [src]="link" class="avatar">
+		</div>
+		<br>
+		<div>
+			Games Played : {{ ladder.gamesPlayed }}
+			<br>
+			Wins: {{ ladder.win }}
+			<br>
+			Loss: {{ ladder.gamesPlayed - ladder.win }}
+		</div>
+		<br>
+		<div *ngIf="my_id != user.id">
+
+			<button *ngIf="!friend" (click)="addFriend()"> Add as friend </button>
+			<button *ngIf="friend" (click)="deleteFriend()"> Remove as friend</button>
+			<button *ngIf="!blocked" (click)="blockUser()"> Block user </button>
+			<button *ngIf="blocked" (click)="unblockUser()"> Unblock user </button>
+		</div>
+		<!-- <button> Invite to play </button> -->
+	</div>
+</div>
+<div *ngIf="error">
+	Could not load user details
+</div>

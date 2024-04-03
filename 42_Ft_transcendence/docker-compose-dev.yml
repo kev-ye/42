@@ -1,0 +1,76 @@
+# Development compose
+version: "3.8"
+
+services:
+  # NestJs
+  back-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./back-end
+      target: development
+    restart: always
+    volumes:
+      - ./back-end:/pong/back-end/
+      - back-end-node-modules:/pong/back-end/node_modules/
+      - back-end-uploads:/pong/uploads
+    command: npm run start:dev
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: ${NODE_ENV_DEV}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+    networks:
+      - front_net
+      - back_net
+      - db_net
+
+  # Angular APP
+  front-end:
+    build:
+      dockerfile: Dockerfile
+      context: ./front-end
+      target: development
+    restart: always
+    volumes:
+      - ./front-end:/pong/front-end/
+      - front-end-node-modules:/pong/front-end/node_modules
+    command: npm run start
+    ports:
+      - "4200:4200"
+    networks:
+      - front_net
+      - back_net
+
+  # Postgres Database for NestJS to connect to
+  postgres:
+    image: postgres:${IMAGE_V}
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    ports:
+      - "35000:5432"
+    networks:
+      - db_net
+
+volumes:
+  back-end-node-modules:
+  back-end-uploads:
+  front-end-node-modules:
+  psql-data:
+
+networks:
+  front_net:
+    driver: bridge
+  back_net:
+    driver: bridge
+  db_net:
+    driver: bridge

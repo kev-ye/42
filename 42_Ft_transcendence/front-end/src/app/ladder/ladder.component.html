@@ -1,0 +1,91 @@
+<style>
+    .ladder {
+      position: relative;
+    }
+
+    .name {
+        cursor: pointer;
+        font-size: 1em;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+    .name:hover {
+        text-decoration: underline;
+    }
+
+    .first {
+        background-color: gold;
+        font-size: 2.5em;
+    }
+
+    .second {
+        background-color: silver;
+        font-size: 2em;
+    }
+
+    .third {
+        background-color: rgb(165, 97, 42);
+        font-size: 1.5em;
+    }
+
+    table {
+        border: 13px outset rgb(202, 173, 76);
+    }
+
+    thead,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+
+<div class="ladder">
+    <div style="position: absolute; left: 50%; transform: translate(-50%, 0);">
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">The table header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div class="name first" (click)="openUser('first')">
+                    
+                        1.
+                        he table body
+                        with two columns
+                </div>
+                <div class="name second">
+                         2.
+                        The table body
+                        with two columns
+                </div>
+                <div class="name third">
+                        3.
+                        The table body
+                     with two columns
+                </div>
+                <div class="name ">
+                         4.
+                      The table body
+                     with two columns
+                </div>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+   <!-- <div class="name first" (click)="openUser('firstPlayer')"> firstPlayer </div>
+    <div class="name second" (click)="openUser('secondPlayer')"> secondPlayer </div>
+    <div class="name third" (click)="openUser('thirdPlayer')"> thirdPlayer </div>
+    <div class="name"> Player </div>
+    <div class="name"> Player </div>
+    <div class="name"> Player </div>
+   -->
+</div>

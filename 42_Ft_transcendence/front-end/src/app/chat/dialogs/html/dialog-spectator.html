@@ -1,0 +1,15 @@
+<h1> List of spectators</h1>
+<div style="height: 500px; width: 300px ;overflow-x: hidden; overflow-y: scroll;">
+	<div *ngFor="let usr of users"> {{ usr.name }}
+		<button (click)="openUserProfile(usr)"> Profile </button>
+		<div style="display: inline;"
+			*ngIf="data.chat.moderator && usr.id != data.chat.creator_id && usr.id != data.user_id">
+			<button *ngIf="!isModerator(usr)" (click)="banUser(usr)"> Ban from chat </button>
+			<button *ngIf="!isModerator(usr)" (click)="muteUser(usr)"> Mute </button>
+			<div style="display: inline;" *ngIf="data.chat.creator_id == data.my_id">
+				<button *ngIf="!isModerator(usr)" (click)="modUser(usr)"> Mod </button>
+				<button *ngIf="isModerator(usr)" (click)="unmodUser(usr)"> Unmod </button>
+			</div>
+		</div>
+	</div>
+</div>
