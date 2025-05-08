@@ -3,47 +3,19 @@ import os
 import re
 
 
-config_root_path = os.path.dirname(os.path.abspath(__file__))
-config_setting_file = config_root_path + '/settings.py'
-
-try:
-    with open(config_setting_file, 'r') as config_f:
-        exec(config_f.read())
-except (FileNotFoundError, PermissionError):
-    exit('settings.py not found or permission denied')
-
-settings_data = {
-    k: v for k, v in globals().items()
-    if (not k.startswith('__')
-        and not k.startswith('config_')
-        and k not in ('os', 'sys', 're'))
-}
-
 def load_template(file_path: str):
     template_data = None
-    try:
-        with open(file_path, 'r') as template_f:
-            template_data = template_f.read()
-        template_f.close()
-    except (FileNotFoundError, PermissionError):
-        print('File not found or permission denied', file=sys.stderr)
-
+    with open(file_path, 'r') as template_f:
+        template_data = template_f.read()
     return template_data
 
 def handle_args(argv: list):
-    if len(argv) != 2 or not argv[1].endswith('.template'):
-        return False
-    return True
+    return (len(argv) == 2 and argv[1].endswith('.template'))
 
 def render_template(template_data: str, ls_to_replace: list, settings: dict):
-    template = None
-    try:
-        for to_replace in ls_to_replace:
-            template = template_data.replace('{' + to_replace + '}', str(settings[to_replace]))
-    except KeyError:
-        print('All keys in template must be in settings', file=sys.stderr)
-        return
-    return template
+    for to_replace in ls_to_replace:
+        template_data = template_data.replace('{' + to_replace + '}', str(settings[to_replace]))
+    return template_data
 
 
 def render(argv: list, settings: dict):
@@ -65,4 +37,20 @@ def render(argv: list, settings: dict):
             output_f.close()
 
 if __name__ == '__main__':
-    render(sys.argv, settings_data)
+    try:
+        config_root_path = os.path.dirname(os.path.abspath(__file__))
+        config_setting_file = config_root_path + '/settings.py'
+    
+        with open(config_setting_file, 'r') as config_f:
+            exec(config_f.read())
+
+        settings_data = {
+            k: v for k, v in globals().items()
+            if (not k.startswith('__')
+                and not k.startswith('config_')
+                and k not in ('os', 'sys', 're'))
+        }
+
+        render(sys.argv, settings_data)
+    except Exception as e:
+        exit(f'Error: {e}')
