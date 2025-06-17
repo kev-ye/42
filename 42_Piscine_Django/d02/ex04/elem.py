@@ -28,7 +28,7 @@ class Elem:
     """
     class ValidationError(Exception):
         def __init__(self):
-            super().__init__("Content must be a string or an Elem instance.")
+            super().__init__("Attr must be a dict or Content must be a string or an Elem instance.")
 
     def __init__(self, tag='div', attr={}, content=None, tag_type='double'):
         """
@@ -61,6 +61,9 @@ class Elem:
         """
         Here is a function to render our elements attributes.
         """
+        if not isinstance(self.attr, dict):
+            raise self.ValidationError
+
         result = ''
         for k, v in sorted(self.attr.items()):
             result += f' {str(k)}="{str(v)}"'
