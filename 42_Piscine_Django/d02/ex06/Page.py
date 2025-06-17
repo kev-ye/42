@@ -33,7 +33,7 @@ class Page:
                     return False
 
         elif isinstance(node, (Body, Div)):
-            valid_content = (H1, H2, Div, Table, Ul, Ol, Span, Text, Img)
+            valid_content = (H1, H2, Div, Table, Ul, Ol, Span, Text)
             if node.content and not all(isinstance(child, valid_content) for child in node.content):
                 return False
 
@@ -63,7 +63,7 @@ class Page:
                 return False
 
         elif isinstance(node, Table):
-            if not node.content or not all(isinstance(child, Tr) for child in node.content):
+            if node.content and not all(isinstance(child, Tr) for child in node.content):
                 return False
 
         elif isinstance(node, Img):
@@ -91,7 +91,21 @@ class Page:
 
 
 if __name__ == '__main__':
-    print("=== Check basic HTML ===")
+    print("=== Test Basic HTML Structure valid ===")
+    basic_html = Html([
+        Head([
+            Title(Text("Hello ground!"))
+        ]),
+        Body([
+            H1(Text("Oh no, not again!"))
+        ])
+    ])
+    page = Page(basic_html)
+    print("Basic HTML structure is valid:", page.is_valid(), " == True")
+    print("\nGenerated Basic HTML Structure:")
+    print(page)
+
+    print("=== Test Basic HTML Structure not valid ===")
     basic_html = Html([
         Head([
             Title(Text("Hello ground!"))
@@ -102,11 +116,9 @@ if __name__ == '__main__':
         ])
     ])
     page = Page(basic_html)
-    print("if basic HTML works:", page.is_valid())
-    print("\nHTML generated:")
-    print(page)
+    print("Basic HTML structure is valid:", page.is_valid(), " == False (Bcz Img in Body)")
 
-    print("\n=== check empty node ===")
+    print("\n=== Test Empty Nodes ===")
     empty_html = Html([
         Head(),
         Body([
@@ -117,37 +129,31 @@ if __name__ == '__main__':
         ])
     ])
     page = Page(empty_html)
-    print("empty HTML node works:", page.is_valid())
-    print("\nempty HTML node generated:")
-    print(page)
+    print("Empty nodes structure is valid:", page.is_valid(), " == False (Bcz P in body)")
 
-    print("\n=== Check list ===")
-    
+    print("\n=== Test List Structure ===")
     valid_list = Ul([
         Li(Text("Item 1")),
         Li(Text("Item 2")),
         Li(Text("Item 3"))
     ])
     page = Page(valid_list)
-    print("list works:", page.is_valid())
-    print("\nlist generated:")
+    print("Valid list structure is valid:", page.is_valid(), " == True")
+    print("\nGenerated valid list:")
     print(page)
 
-    
     empty_list = Ul([])
     page = Page(empty_list)
-    print("\nempty list works:", page.is_valid())
+    print("\nEmpty list structure is valid:", page.is_valid(), " == False (Bcz Ul must have aleast one Li)")
 
-    
     invalid_list = Ul([
         Li(Text("Item 1")),
-        Div(Text("Invalid"))  
+        Div(Text("Invalid"))
     ])
     page = Page(invalid_list)
-    print("\nwrong list works:", page.is_valid())
+    print("Invalid list content is valid:", page.is_valid(), " == False (Bcz Ul only accept Li)")
 
-    print("\n=== check table header ===")
-    
+    print("\n=== Test Table Structure ===")
     valid_table_th = Table([
         Tr([
             Th(Text("Header 1")),
@@ -155,11 +161,10 @@ if __name__ == '__main__':
         ])
     ])
     page = Page(valid_table_th)
-    print("only th works:", page.is_valid())
-    print("\nth generated:")
+    print("Table with only Th is valid:", page.is_valid(), " == True")
+    print("\nGenerated table with Th:")
     print(page)
 
-    
     valid_table_td = Table([
         Tr([
             Td(Text("Cell 1")),
@@ -167,28 +172,30 @@ if __name__ == '__main__':
         ])
     ])
     page = Page(valid_table_td)
-    print("\nonly td works:", page.is_valid())
-    print("\ntd generated:")
+    print("\nTable with only Td is valid:", page.is_valid(), " == True")
+    print("\nGenerated table with Td:")
     print(page)
 
-    
     invalid_table_mixed = Table([
         Tr([
             Th(Text("Header")),
-            Td(Text("Cell"))  
+            Td(Text("Cell"))
         ])
     ])
     page = Page(invalid_table_mixed)
-    print("\mix Th and Td works:", page.is_valid())
+    print("\nMixed Th and Td is valid:", page.is_valid(), " == False (Bcz Th and Td cannot be exist in same time)")
 
-    
     empty_tr = Table([
         Tr([])
     ])
     page = Page(empty_tr)
-    print("\nempty Tr works:", page.is_valid())
+    print("\nEmpty Tr is valid:", page.is_valid(), " == False (Bcz Tr must have aleast one th/tr)")
 
-    print("\n=== Complex test ===")
+    empty_table = Table([])
+    page = Page(empty_table)
+    print("\nEmpty Table is valid:", page.is_valid(), " == True")
+
+    print("\n=== Test Complex Structure ===")
     complex_html = Html([
         Head([
             Title(Text("Complex Page"))
@@ -197,13 +204,11 @@ if __name__ == '__main__':
             H1(Text("Main Title")),
             Div([
                 H2(Text("Subtitle")),
-                P([
-                    Text("This is a "),
-                    Span([
-                        Text("complex "),
-                        P(Text("nested"))
+                Span([
+                    P([
+                        Text("This is a ")
                     ]),
-                    Text(" structure.")
+                    Text(" Simple text.")
                 ]),
                 Ul([
                     Li(Text("List item 1")),
@@ -223,11 +228,11 @@ if __name__ == '__main__':
         ])
     ])
     page = Page(complex_html)
-    print("complex works:", page.is_valid())
-    print("\ncomplex generated:")
+    print("Complex structure is valid:", page.is_valid(), " == True")
+    print("\nGenerated complex structure:")
     print(page)
 
-    print("\n=== Write to file ===")
+    print("\n=== Test File Writing ===")
     page = Page(basic_html)
     page.write_to_file("test.html")
-    print("HTML writing test.html done") 
+    print("HTML file has been written to test.html") 
