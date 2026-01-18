@@ -1,0 +1,17 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}<title>Ex01 : Django, framework web.</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'ex01/style1.css' %}">{% endblock %}
+
+{% block content %}
+{% include "ex01/nav.html" %}
+<h1>Ex01 : Django, framework web.</h1>
+<h2>What is Django?</h2>
+<p>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.</p>
+<h2>History</h2>
+<p>Django was created in 2003 by Adrian Holovaty and Simon Willison while working at the Lawrence Journal-World newspaper.</p>
+<p>It was released publicly under a BSD license in July 2005.</p>
+<p>The framework was named after guitarist Django Reinhardt.</p>
+{% endblock %}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex00 : Markdown Cheatsheet.</title>
+</head>
+<body>
+    <h1>Ex00 : Markdown Cheatsheet.</h1>
+
+    <h2>Headers</h2>
+    <pre>
+        # H1
+        ## H2
+        ### H3
+        #### H4
+        ##### H5
+        ###### H6
+    </pre>
+
+    <h2>Emphasis</h2>
+    <table border="1">
+        <tr>
+            <th>Syntax</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>*italic* or _italic_</td>
+            <td><em>italic</em></td>
+        </tr>
+        <tr>
+            <td>**bold** or __bold__</td>
+            <td><strong>bold</strong></td>
+        </tr>
+        <tr>
+            <td>***bold italic***</td>
+            <td><strong><em>bold italic</em></strong></td>
+        </tr>
+        <tr>
+            <td>~~strikethrough~~</td>
+            <td><del>strikethrough</del></td>
+        </tr>
+    </table>
+
+    <h2>Lists</h2>
+    <h3>Unordered List</h3>
+
+    <pre>
+        - Item 1
+        - Item 2
+        - Subitem 2.1
+        - Subitem 2.2
+        - Item 3
+    </pre>
+    <p>Or use * or + instead of -</p>
+
+    <h3>Ordered List</h3>
+    <pre>
+        1. First item
+        2. Second item
+        3. Third item
+    </pre>
+
+    <h2>Links</h2>
+    <pre>
+        [Link text](https://www.example.com)
+        [Link with title](https://www.example.com "Title")
+        &lt;https://www.example.com&gt;</pre>
+
+    <h2>Images</h2>
+    <pre>
+        ![Alt text](image.jpg)
+        ![Alt text](image.jpg "Image title")
+    </pre>
+
+    <h2>Code</h2>
+    <h3>Inline Code</h3>
+    <pre>Use `code` in your text</pre>
+
+    <h3>Code Blocks</h3>
+    <pre>
+        ```python
+        def hello():
+            print("Hello, World!")```
+    </pre>
+
+    <p>Or indent with 4 spaces:</p>
+    <pre>
+        def hello():
+            print("Hello, World!")
+    </pre>
+
+    <h2>Blockquotes</h2>
+    <pre>
+        &gt; This is a blockquote
+        &gt; 
+        &gt; Multiple lines</pre>
+    <p>Nested blockquotes:</p>
+    <pre>&gt; Level 1
+        &gt; &gt; Level 2
+        &gt; &gt; &gt; Level 3</pre>
+
+    <h2>Horizontal Rule</h2>
+    <pre>
+        ---
+        ***
+        ___
+    </pre>
+
+    <h2>Tables</h2>
+    <pre>
+        | Header 1 | Header 2 | Header 3 |
+        |----------|----------|----------|
+        | Cell 1   | Cell 2   | Cell 3   |
+        | Cell 4   | Cell 5   | Cell 6   |
+    </pre>
+    
+    <p>Alignment:</p>
+    <pre>
+        | Left | Center | Right |
+        |:-----|:------:|------:|
+        | L1   |   C1   |    R1 |
+        | L2   |   C2   |    R2 |
+    </pre>
+
+    <h2>Task Lists</h2>
+    <pre>
+        - [x] Completed task
+        - [ ] Incomplete task
+        - [ ] Another task
+    </pre>
+
+    <h2>Escaping Characters</h2>
+    <p>Use backslash \ to escape special characters:</p>
+    
+    <pre>
+        \* Not italic \*
+        \# Not a header
+        \[Not a link\](url)
+    </pre>
+
+    <h2>HTML in Markdown</h2>
+    <p>You can use HTML tags directly in Markdown:</p>
+    
+    <pre>
+        &lt;div style="color: red;"&gt;
+        This is red text
+        &lt;/div&gt;
+    </pre>
+
+    <h2>Footnotes</h2>
+    <pre>
+        Here's a sentence with a footnote[^1].
+
+        [^1]: This is the footnote.
+    </pre>
+
+    <h2>Definition Lists</h2>
+    <pre>
+        Term 1
+        : Definition 1
+
+        Term 2
+        : Definition 2a
+        : Definition 2b
+    </pre>
+
+</body>
+</html>

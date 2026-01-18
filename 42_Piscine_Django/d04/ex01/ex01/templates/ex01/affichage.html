@@ -1,0 +1,20 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}<title>Ex01 : Processus d'affichage d'une page statique.</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'ex01/style1.css' %}">{% endblock %}
+
+{% block content %}
+{% include "ex01/nav.html" %}
+<h1>Ex01 : Processus d'affichage d'une page statique.</h1>
+<h2>Request to Response Process</h2>
+<ol>
+    <li>Client sends HTTP request to Django server</li>
+    <li>URL dispatcher matches the URL pattern in urls.py</li>
+    <li>Corresponding view function is called</li>
+    <li>View renders the template with context data</li>
+    <li>Template engine processes the template</li>
+    <li>HTML response is sent back to client</li>
+</ol>
+{% endblock %}

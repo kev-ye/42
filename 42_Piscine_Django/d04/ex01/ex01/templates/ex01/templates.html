@@ -1,0 +1,29 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}<title>Ex01 : Moteur de template.</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'ex01/style2.css' %}">{% endblock %}
+
+{% block content %}
+{% include "ex01/nav.html" %}
+<h1>Ex01 : Moteur de template.</h1>
+<h2>Django Template Engine</h2>
+<p>Django's template engine provides tags and filters to define the presentation layer.</p>
+
+<h3>Blocks</h3>
+<p>Blocks allow child templates to override sections of parent templates.</p>
+<pre>{% templatetag openblock %} block content {% templatetag closeblock %}...{% templatetag openblock %} endblock {% templatetag closeblock %}</pre>
+
+<h3>For Loops</h3>
+<p>Iterate over items in a list:</p>
+<pre>{% templatetag openblock %} for item in list {% templatetag closeblock %}...{% templatetag openblock %} endfor {% templatetag closeblock %}</pre>
+
+<h3>If Statements</h3>
+<p>Conditional display of content:</p>
+<pre>{% templatetag openblock %} if condition {% templatetag closeblock %}...{% templatetag openblock %} endif {% templatetag closeblock %}</pre>
+
+<h3>Variables</h3>
+<p>Display variables passed from view context:</p>
+<pre>{% templatetag openvariable %} variable_name {% templatetag closevariable %}</pre>
+{% endblock %}

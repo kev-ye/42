@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex03 : Fifty shades of bic</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            width: 80px;
+            height: 40px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ex03 : Fifty shades of bic</h1>
+    <table>
+        {% for color in colors %}
+            <th>{{ color }}</th>
+        {% endfor %}
+        {% for shade in shades %}
+            <tr>
+                <td style="background-color: {{ shade.black }};"></td>
+                <td style="background-color: {{ shade.red }};"></td>
+                <td style="background-color: {{ shade.blue }};"></td>
+                <td style="background-color: {{ shade.green }};"></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
