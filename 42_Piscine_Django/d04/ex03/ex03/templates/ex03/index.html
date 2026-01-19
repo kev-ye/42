@@ -17,9 +17,11 @@
 <body>
     <h1>Ex03 : Fifty shades of bic</h1>
     <table>
-        {% for color in colors %}
-            <th>{{ color }}</th>
-        {% endfor %}
+        <tr>
+            {% for color in colors %}
+                <th>{{ color }}</th>
+            {% endfor %}
+        </tr>
         {% for shade in shades %}
             <tr>
                 <td style="background-color: {{ shade.black }};"></td>
