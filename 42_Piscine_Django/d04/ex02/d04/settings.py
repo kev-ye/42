@@ -119,3 +119,4 @@ STATIC_URL = 'static/'
 
 # Log file path
 LOG_FILE_PATH = BASE_DIR / 'ex02' / 'logs.txt'
+APPEND_SLASH = True
