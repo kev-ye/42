@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
     {% block title %}<title>Ex01</title>{% endblock %}
-    {% block style %}{% endblock %}
+    {% block style %}
+        {% if page_name == 'templates' %}
+            <link rel="stylesheet" href="{% static 'ex01/style2.css' %}">
+        {% else %}
+            <link rel="stylesheet" href="{% static 'ex01/style1.css' %}">
+        {% endif %}
+    {% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}
