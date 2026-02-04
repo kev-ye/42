@@ -1,0 +1,57 @@
+/* Login */
+"login_title" = "Bienvenue sur ft_hangouts";
+"login_subtitle" = "Entrez votre numéro de téléphone pour continuer";
+"phone_number" = "Numéro de téléphone";
+"login_button" = "Connexion";
+"login_error" = "Veuillez entrer un numéro de téléphone valide";
+
+/* Tabs */
+"contacts" = "Contacts";
+"messages" = "Messages";
+"settings" = "Paramètres";
+
+/* Contact Management */
+"add_contact" = "Ajouter un contact";
+"edit" = "Modifier";
+"done" = "Terminé";
+"save" = "Enregistrer";
+"cancel" = "Annuler";
+"delete" = "Supprimer";
+"name" = "Nom";
+"email" = "Email";
+"address" = "Adresse";
+"birthday" = "Anniversaire";
+"birthday_format" = "AAAA-MM-JJ";
+"photo" = "Photo";
+"select_photo" = "Sélectionner une photo";
+"basic_info" = "Informations de base";
+"additional_info" = "Informations supplémentaires";
+"delete_contact" = "Supprimer le contact";
+"delete_contact_title" = "Supprimer le contact";
+"delete_contact_message" = "Êtes-vous sûr de vouloir supprimer ce contact ?";
+"send_message" = "Envoyer un message";
+"call_contact" = "Appeler le contact";
+
+/* Messages */
+"new_message" = "Nouveau message";
+"recipient" = "Destinataire";
+"message" = "Message";
+"send" = "Envoyer";
+"type_message" = "Tapez un message...";
+"you" = "Vous";
+"yesterday" = "Hier";
+"user_not_found" = "Utilisateur non trouvé. Le destinataire doit être enregistré dans l'application.";
+"contact_user_not_registered" = "Le numéro de téléphone de ce contact n'est pas enregistré dans l'application. Il doit d'abord se connecter avant que vous puissiez lui envoyer des messages.";
+"send_failed" = "Échec de l'envoi du message";
+"ok" = "OK";
+
+/* Settings */
+"user" = "Utilisateur";
+"switch_user" = "Changer d'utilisateur";
+"logout" = "Déconnexion";
+"appearance" = "Apparence";
+"header_color" = "Couleur d'en-tête";
+"select_color" = "Sélectionner une couleur";
+
+/* Background */
+"last_background" = "L'application était en arrière-plan à";
